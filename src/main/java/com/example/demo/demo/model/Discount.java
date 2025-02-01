@@ -1,10 +1,14 @@
 package com.example.demo.demo.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import java.util.Date;
 
-@Entity
+@Entity(name = "ModelDiscount")
 @Table(name = "Discounts")
+
 public class Discount {
 
     @Id
@@ -38,8 +42,19 @@ public class Discount {
 
     @ManyToOne
     @JoinColumn(name = "destination_id")
+    @JsonBackReference  // Prevent infinite recursion by ignoring the "back" side
     private Destination destination;
-
+    public Discount() {
+    }
+    // Constructor
+    public Discount(String description, double discountValue, Status status, DiscountType discountType,Date startDate ,Date endDate) {
+        this.description = description;
+        this.discountValue = discountValue;
+        this.status = status;
+        this.discountType = discountType;
+        this.startDate=startDate;
+        this.endDate = endDate;
+    }
     // Getters and Setters
     public Integer getId() {
         return discount_id;
@@ -100,7 +115,7 @@ public class Discount {
     public Status getStatus() {
         return status;
     }
-
+    
     public void setStatus(Status status) {
         this.status = status;
     }
@@ -120,4 +135,5 @@ public class Discount {
     public enum Status {
         Active, Expired
     }
+    
 }

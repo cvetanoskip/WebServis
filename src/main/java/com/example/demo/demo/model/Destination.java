@@ -1,5 +1,8 @@
 package com.example.demo.demo.model;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 @Entity
@@ -15,6 +18,7 @@ public class Destination {
     private String country;
 
     @OneToMany(mappedBy = "destination", cascade = CascadeType.ALL)
+    @JsonManagedReference  // Manage serialization of the "parent" side
     private List<Discount> discounts;
 
     // Getters and Setters

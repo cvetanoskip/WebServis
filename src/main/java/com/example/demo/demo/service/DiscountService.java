@@ -9,7 +9,7 @@ import com.example.demo.demo.repository.DestinationRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Service("regularDiscountService")
 public class DiscountService {
 
     private final DiscountRepository discountRepository;
@@ -21,36 +21,36 @@ public class DiscountService {
     }
 
     // Get all discounts (SOAP Model)
-    public List<com.example.demo.demo.soap.models.Discount> getAllDiscounts() {
-        List<com.example.demo.demo.model.Discount> discounts = discountRepository.findAll();
-        return discounts.stream()
-                .map(this::convertToSoapModel)
-                .toList();
-    }
+    // public List<com.example.demo.demo.soap.models.Discount> getAllDiscounts() {
+    //     List<com.example.demo.demo.model.Discount> discounts = discountRepository.findAll();
+    //     return discounts.stream()
+    //             .map(this::convertToSoapModel)
+    //             .toList();
+    // }
 
-    // Convert Model to SOAP
-    private com.example.demo.demo.soap.models.Discount convertToSoapModel(com.example.demo.demo.model.Discount discount) {
-        com.example.demo.demo.soap.models.Discount soapDiscount = new com.example.demo.demo.soap.models.Discount();
-        soapDiscount.setId(discount.getId());
-        soapDiscount.setDescription(discount.getDescription());
-        soapDiscount.setDiscountValue(discount.getDiscountValue());
-        soapDiscount.setStartDate(discount.getStartDate());
-        soapDiscount.setEndDate(discount.getEndDate());
-        return soapDiscount;
-    }
+    // // Convert Model to SOAP
+    // private com.example.demo.demo.soap.models.Discount convertToSoapModel(com.example.demo.demo.model.Discount discount) {
+    //     com.example.demo.demo.soap.models.Discount soapDiscount = new com.example.demo.demo.soap.models.Discount();
+    //     soapDiscount.setDiscount_id(discount.getId());
+    //     soapDiscount.setDescription(discount.getDescription());
+    //     soapDiscount.setDiscountValue(discount.getDiscountValue());
+    //     soapDiscount.setStartDate(discount.getStartDate());
+    //     soapDiscount.setEndDate(discount.getEndDate());
+    //     return soapDiscount;
+    // }
 
-    // Get sorted discounts
-    public List<com.example.demo.demo.soap.models.Discount> getSortedDiscounts() {
-        List<com.example.demo.demo.soap.models.Discount> discounts = getAllDiscounts();
-        discounts.sort((d1, d2) -> Double.compare(d2.getDiscountValue(), d1.getDiscountValue()));
-        return discounts;
-    }
+    // // Get sorted discounts
+    // public List<com.example.demo.demo.soap.models.Discount> getSortedDiscounts() {
+    //     List<com.example.demo.demo.soap.models.Discount> discounts = getAllDiscounts();
+    //     discounts.sort((d1, d2) -> Double.compare(d2.getDiscountValue(), d1.getDiscountValue()));
+    //     return discounts;
+    //}
 
     // Add a new discount
     public Discount addDiscount(Discount discount) {
         return discountRepository.save(discount);
     }
-
+  
     // Add a discount to a destination
     public Discount addDiscountToDestination(Integer destinationId, Discount discount) {
         Optional<Destination> destinationOptional = destinationRepository.findById(destinationId);
@@ -95,5 +95,11 @@ public class DiscountService {
         } else {
             throw new IllegalArgumentException("Destination with ID " + destinationId + " does not exist.");
         }
+    }
+
+    // Get all discounts
+    public List<Discount> getAllDiscounts() {
+        
+            return discountRepository.findAll();
     }
 }
