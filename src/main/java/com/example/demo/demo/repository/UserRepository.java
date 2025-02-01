@@ -7,8 +7,10 @@ import com.example.demo.demo.model.User;
 import java.lang.String;
 import javax.transaction.Transactional;
 import javax.persistence.*;
-@Transactional
-@Repository
-public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecificationExecutor<User> {
+import org.springframework.data.jpa.repository.JpaRepository;
 
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+    // Custom query to find a user by username
+    User findByUsername(String username);
 }
