@@ -44,17 +44,17 @@ import javax.xml.bind.annotation.XmlType;
 public class DiscountResponse {
 
     @XmlElement(required = true)
-    protected Discount discounts;
+    protected List<Discount> discounts;
 
     /**
      * Gets the value of the discounts property.
      * 
      * @return
      *     possible object is
-     *     {@link Discount }
+     *     {@link List<Discount> }
      *     
      */
-    public Discount getDiscounts() {
+    public List<Discount> getDiscounts() {
         return discounts;
     }
 
@@ -63,10 +63,10 @@ public class DiscountResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link Discount }
+     *     {@link List<Discount> }
      *     
      */
-    public void setDiscounts(Discount value) {
+    public void setDiscounts(List<Discount> value) {
         this.discounts = value;
     }
 

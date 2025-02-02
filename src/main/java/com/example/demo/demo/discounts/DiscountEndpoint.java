@@ -41,7 +41,7 @@ public class DiscountEndpoint {
 //         // for (Discount discount : discounts) {
         //     response.setDiscounts(discount);
         // }
-        response.setDiscounts(discounts.get(0));
+        response.setDiscounts(discounts);
         return response;
     }
 
@@ -52,7 +52,7 @@ public class DiscountEndpoint {
     public DiscountResponse listDiscountsAbove45(@RequestPayload DiscountAbove45Request request) {
         List<Discount> discounts = discountService.getDiscountsAbove45();
         DiscountResponse response = new DiscountResponse();
-        response.setDiscounts(discounts.get(0));
+        response.setDiscounts(discounts);
         return response;
     }
 
@@ -63,7 +63,7 @@ public class DiscountEndpoint {
     public DiscountResponse listDiscountsEndingIn2Days(@RequestPayload DiscountEndingIn2DaysRequest request) {
         List<Discount> discounts = discountService.getDiscountsEndingIn2Days();
         DiscountResponse response = new DiscountResponse();
-        response.setDiscounts(discounts.get(0));
+        response.setDiscounts(discounts);
         return response;
     }
 }

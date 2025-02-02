@@ -20,7 +20,7 @@
         <xs:element name="DiscountResponse">
              <xs:complexType>
                  <xs:sequence>
-                   <xs:element name="discounts" type="tns:Discount" />
+                   <xs:element name="discounts" type="tns:Discount" maxOccurs="unbounded"/>
              </xs:sequence>
         </xs:complexType>
     </xs:element>
