@@ -91,9 +91,9 @@ public class DiscountService {
         //
         List<Discount> filteredDiscounts = new ArrayList<>();
         for(int i = 0; i < list.size(); i++){
-            long diffInMillis=  list.get(i).getEndDate().getTime()- System.currentTimeMillis();
+            long diffInMillis= System.currentTimeMillis()- list.get(i).getEndDate().getTime();
         long daysLeft = TimeUnit.MILLISECONDS.toDays(diffInMillis);
-            if( daysLeft == 2){
+            if( daysLeft >=0 && daysLeft <= 2){
                 filteredDiscounts.add(list.get(i));
             }
             
