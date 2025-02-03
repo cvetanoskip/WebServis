@@ -23,6 +23,8 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class ServiceConfig {
 
+
+    
     @Bean
     public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext context) {
         MessageDispatcherServlet servlet = new MessageDispatcherServlet();
